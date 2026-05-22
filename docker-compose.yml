@@ -1,0 +1,14 @@
+services:
+  frontend:
+    build: ./frontend
+    image: taskmgr-frontend:v2.0
+    ports:
+      - "8080:80"
+
+  # Backend runs natively on Windows because it needs direct access to
+  # Windows kernel APIs (EnumProcesses, OpenProcess, etc.) to monitor
+  # host system processes. Windows containers on Win10 use Hyper-V
+  # isolation and cannot see host processes.
+  # 
+  # Run backend natively: backend\x64\Release\task_manager_backend.exe
+  # Backend listens on port 8765
